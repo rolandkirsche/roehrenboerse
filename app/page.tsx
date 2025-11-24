@@ -1,4 +1,6 @@
 // app/page.tsx
+import { fetchListings } from "@/lib/db";
+import CreateListingButton from "@/components/CreateListingButton";
 
 type Listing = {
   id: number;
@@ -10,35 +12,8 @@ type Listing = {
   category: string;
 };
 
-const listings: Listing[] = [
-  {
-    id: 1,
-    title: "ECC83 / 12AX7 Telefunken glatt – gematchtes Paar",
-    tags: ["NOS", "getestet", "Privatverkauf"],
-    price: "120 €",
-    location: "Berlin · Versand möglich",
-    label: "NOS",
-    category: "Röhre",
-  },
-  {
-    id: 2,
-    title: "EL34 Mullard xf2 – Paar",
-    tags: ["gebraucht", "gemessen"],
-    price: "85 €",
-    location: "München · Abholung",
-    category: "Endröhre",
-  },
-  {
-    id: 3,
-    title: "DIY Röhrenverstärker 2x EL84",
-    tags: ["DIY", "funktioniert", "ohne Garantie"],
-    price: "350 €",
-    location: "Hamburg · Versand/Abholung",
-    category: "Verstärker",
-  },
-];
-
-export default function Home() {
+export default async function Home() {
+  const listings = await fetchListings();
   return (
     <main className="page-main">
       {/* Header */}
@@ -47,25 +22,19 @@ export default function Home() {
           <div className="rb-logo-badge" />
           <div>
             <div className="rb-logo-text-main">Röhrenbörse</div>
-            <div className="rb-logo-text-sub">
-              Marktplatz für Röhren &amp; Vintage Audio
-            </div>
+            <div className="rb-logo-text-sub">Marktplatz für Röhren &amp; Vintage Audio</div>
           </div>
         </div>
         <div className="rb-header-actions">
           <button className="btn btn-ghost">Login</button>
-          <button className="btn btn-primary">Inserat erstellen</button>
+          <CreateListingButton />
         </div>
       </header>
 
       {/* Filter */}
       <section className="rb-filters">
         <div className="rb-search">
-          <input
-            type="search"
-            className="rb-input"
-            placeholder="Suche nach Typ, Hersteller oder Sockel (z.B. ECC83, Telefunken)..."
-          />
+          <input type="search" className="rb-input" placeholder="Suche nach Typ, Hersteller oder Sockel (z.B. ECC83, Telefunken)..." />
         </div>
         <button className="btn btn-ghost">Röhren</button>
         <button className="btn btn-ghost">Verstärker</button>
@@ -81,7 +50,7 @@ export default function Home() {
             <h2 className="rb-card-title">{item.title}</h2>
 
             <div className="rb-card-meta">
-              {item.tags.map((tag) => (
+              {item.tags.map((tag: string) => (
                 <span key={tag}>{tag}</span>
               ))}
             </div>
