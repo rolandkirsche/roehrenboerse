@@ -1,4 +1,6 @@
 /* app/globals.css */
+@import "tailwindcss";
+
 :root {
   --bg: #050509;
   --bg-soft: #12131a;
@@ -376,3 +378,4 @@ body {
   justify-content: space-between;
   gap: 10px;
 }
+
