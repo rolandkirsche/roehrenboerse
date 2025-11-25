@@ -23,7 +23,7 @@ export default async function Home() {
           <div className="rb-logo-badge" />
           <div>
             <div className="rb-logo-text-main">Röhrenbörse</div>
-            <div className="rb-logo-text-sub">Marktplatz für Röhren &amp; Vintage Audio</div>
+            <div className="rb-logo-text-sub">Marktplatz für Röhren &amp; Vintage Audio und vieles mehr</div>
           </div>
         </div>
         <div className="rb-header-actions">
