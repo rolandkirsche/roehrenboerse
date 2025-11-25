@@ -1,6 +1,7 @@
 // app/page.tsx
 import { fetchListings } from "@/lib/db";
 import CreateListingButton from "@/components/CreateListingButton";
+import LogoutButton from "@/components/LogoutButton";
 
 type Listing = {
   id: number;
@@ -26,7 +27,7 @@ export default async function Home() {
           </div>
         </div>
         <div className="rb-header-actions">
-          <button className="btn btn-ghost">Login</button>
+          <LogoutButton />
           <CreateListingButton />
         </div>
       </header>

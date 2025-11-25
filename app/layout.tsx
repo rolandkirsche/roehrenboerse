@@ -1,6 +1,7 @@
 // app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
+import { AuthProvider } from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Röhrenbörse",
@@ -14,7 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de">
-      <body className="page">{children}</body>
+      <body className="page">
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }
